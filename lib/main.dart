@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:logger/logger.dart';
 import 'package:todo_with_freezed_bloc/data/models/todo_list.dart';
 import 'package:todo_with_freezed_bloc/data/models/todo_task.dart';
 
@@ -22,8 +23,11 @@ Future<void> main() async {
 class ToDoApp extends StatelessWidget {
   const ToDoApp({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
+
+    Logger().d('App started');
     return MaterialApp(
       title: 'To do list',
       theme: ThemeData(
