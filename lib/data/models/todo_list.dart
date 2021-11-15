@@ -1,13 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hive/hive.dart';
 import 'package:todo_with_freezed_bloc/data/models/todo_task.dart';
+import 'package:hive/hive.dart';
 
 part 'todo_list.freezed.dart';
 
 part 'todo_list.g.dart';
 
 @freezed
-// @JsonSerializable(explicitToJson: true)
 class ToDoList  with _$ToDoList {
 
   @HiveType(typeId: 0, adapterName: 'ToDoListAdapter')

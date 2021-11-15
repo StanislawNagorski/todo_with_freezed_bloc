@@ -5,7 +5,7 @@ import 'database_interface.dart';
 
 const String DATABASE_TASKS = 'tasks';
 
-class HiveService implements DataBaseServiceInterface {
+class HiveService implements DataBaseService {
   static final tasksBox = Hive.box<ToDoList>(DATABASE_TASKS);
 
   @override
