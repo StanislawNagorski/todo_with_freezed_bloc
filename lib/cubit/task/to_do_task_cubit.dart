@@ -13,19 +13,19 @@ class ToDoTaskCubit extends Cubit<ToDoTaskState> {
 
   ToDoTaskCubit(this._dbService) : super(ToDoTaskState.initial());
 
-  addList({required ToDoList toDoList}) => _dbService.save(toDoList).then((_) => emit(ToDoTaskState.saved()));
+  addList({required ToDoList toDoList}) => _dbService.save(toDoList).then((_) => emit(ToDoTaskState.saved(toDoCollection: _dbService.getAllLists())));
 
-  deleteList({required String id}) => _dbService.delete(id).then((_) => emit(ToDoTaskState.deleted()));
+  deleteList({required String id}) => _dbService.delete(id).then((_) => emit(ToDoTaskState.deleted(toDoCollection :_dbService.getAllLists())));
 
-  getList({required String id}) {
-    ToDoList? list = _dbService.getList(id);
-    if (list == null) return emit(ToDoTaskState.listNotFound());
-    return emit(ToDoTaskState.listFound(toDoList: list));
-  }
+  // getList({required String id}) {
+  //   ToDoList? list = _dbService.getList(id);
+  //   if (list == null) return emit(ToDoTaskState.listNotFound());
+  //   return emit(ToDoTaskState.listFound(toDoList: list));
+  // }
 
   getToDoCollection() {
     List<ToDoList> toDoCollection = _dbService.getAllLists();
     if (toDoCollection.isEmpty) return emit(ToDoTaskState.collectionEmpty());
-    return emit(ToDoTaskState.collection(toDoCollection: toDoCollection));
+    return emit(ToDoTaskState.collectionLoaded(toDoCollection: toDoCollection));
   }
 }
