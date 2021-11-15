@@ -6,8 +6,8 @@ part 'todo_task.freezed.dart';
 part 'todo_task.g.dart';
 
 @freezed
-@HiveType(typeId: 1)
-class ToDoTask extends HiveObject with _$ToDoTask {
+class ToDoTask  with _$ToDoTask {
+  @HiveType(typeId: 1, adapterName: 'ToDoTaskAdapter')
   @Assert('description.isNotEmpty', 'description cannot be empty')
   factory ToDoTask(
     @HiveField(0) String id, {
@@ -15,5 +15,5 @@ class ToDoTask extends HiveObject with _$ToDoTask {
     @HiveField(2, defaultValue: false) @Default(false) bool isDone,
   }) = _ToDoTask;
 
-  factory ToDoTask.fromJson(Map<String, dynamic> json) => _$ToDoTask(json);
+  factory ToDoTask.fromJson(Map<String, dynamic> json) => _$ToDoTaskFromJson(json);
 }

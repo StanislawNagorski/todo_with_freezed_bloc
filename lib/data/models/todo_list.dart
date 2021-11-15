@@ -7,9 +7,10 @@ part 'todo_list.freezed.dart';
 part 'todo_list.g.dart';
 
 @freezed
-@JsonSerializable(explicitToJson: true)
-@HiveType(typeId: 0)
-class ToDoList extends HiveObject with _$ToDoList {
+// @JsonSerializable(explicitToJson: true)
+class ToDoList  with _$ToDoList {
+
+  @HiveType(typeId: 0, adapterName: 'ToDoListAdapter')
   @Assert('lists != null', 'list must be initialized')
   factory ToDoList(
     @HiveField(0) String id, {
